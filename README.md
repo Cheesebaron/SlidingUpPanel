@@ -7,6 +7,8 @@ Add an awesome draggable panel that slides up from either the bottom or top of y
 
 Get it in the [Xamarin Component store](http://components.xamarin.com/view/slidinguppanel)!
 
+![animation](https://raw.githubusercontent.com/Cheesebaron/SlidingUpPanel/master/component/screenshots/animation.gif)
+
 ## Key features
 
 - Customizable height
