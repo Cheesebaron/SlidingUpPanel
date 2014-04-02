@@ -44,3 +44,11 @@ To use it, add the component and in your layout simply wrap your layouts with `c
     </RelativeLayout>
 </cheesebaron.slidinguppanel.SlidingUpPanelLayout>
 ```
+
+## Thanks to
+
+- [Umano](https://github.com/umano) which have created the Java implementation for Java Android.
+
+## License
+
+This project is licensed under the [Apache 2.0 License](https://raw.githubusercontent.com/Cheesebaron/SlidingUpPanel2/master/LICENSE).
