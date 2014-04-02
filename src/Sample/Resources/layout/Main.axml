@@ -7,52 +7,64 @@
     android:gravity="bottom"
     app:collapsedHeight="68dp"
     app:shadowHeight="4dp"
-    app:dragView="@+id/name">
+    app:dragView="@+id/infobox">
 <!-- Main content -->
-    <TextView
-        android:id="@+id/main"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Main Content"
         android:clickable="true"
         android:focusable="false"
-        android:focusableInTouchMode="true"
-        android:textSize="16sp" />
+        android:focusableInTouchMode="true">
+        <TextView
+            android:id="@+id/main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/main"
+            android:textSize="16sp" />
+    </RelativeLayout>
 <!-- Sliding panel -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#eee"
         android:orientation="vertical"
         android:clickable="true"
         android:focusable="false">
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="68dp"
-            android:orientation="horizontal">
+            android:background="@drawable/container_dropshadow"
+            android:id="@+id/infobox">
             <TextView
                 android:id="@+id/name"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textSize="14sp"
-                android:gravity="center_vertical"
-                android:paddingLeft="10dp" />
-            <Button
-                android:id="@+id/follow"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textSize="14sp"
-                android:gravity="center_vertical|right"
-                android:paddingRight="10dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:textSize="24sp"
+                android:text="@string/name"
                 android:paddingLeft="10dp" />
-        </LinearLayout>
-        <ImageView
+            <ImageView
+                android:id="@+id/follow"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
+                android:layout_alignParentRight="true"
+                android:padding="8dp"
+                android:scaleType="fitStart"
+                android:src="@drawable/my_mug" />
+        </RelativeLayout>
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:scaleType="fitStart"
-            android:src="@drawable/graphic" />
+            android:background="#fff"
+            android:padding="8dp">
+            <TextView
+                android:id="@+id/more_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/more_info"
+                android:textSize="14sp" />
+        </RelativeLayout>
     </LinearLayout>
 </cheesebaron.slidinguppanel.SlidingUpPanelLayout>

@@ -1,6 +1,6 @@
 :: Grab xpkg from http://components.xamarin.com/submit/xpkg and put contents of the zip into xpkg
 
-xpkg\xamarin-component.exe create-manually slidinguppanel-1.0.xam ^
+xpkg\xamarin-component.exe create-manually slidinguppanel-1.0.1.xam ^
 	--name="SlidingUpPanel" ^
 	--summary="A panel that slides out from the bottom or top of the screen." ^
 	--website="https://github.com/Cheesebaron/SlidingUpPanel" ^

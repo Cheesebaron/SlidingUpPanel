@@ -1,12 +1,14 @@
 ﻿using Android.App;
 using Android.Support.V7.App;
+using Android.Text.Method;
 using Android.Util;
 using Android.OS;
+using Android.Widget;
 using Cheesebaron.SlidingUpPanel;
 
 namespace Sample
 {
-    [Activity(Label = "SlidingUpPanel Sample", MainLauncher = true, Icon = "@drawable/icon",
+    [Activity(Label = "SlidingUpPanel Sample", MainLauncher = true, Icon = "@drawable/ic_launcher",
         Theme = "@style/AppTheme")]
     public class DemoActivity : ActionBarActivity
     {
@@ -21,6 +23,8 @@ namespace Sample
             SetContentView(Resource.Layout.Main);
 
             var layout = FindViewById<SlidingUpPanelLayout>(Resource.Id.sliding_layout);
+            FindViewById<TextView>(Resource.Id.more_info).MovementMethod = new LinkMovementMethod();
+
             layout.ShadowDrawable = Resources.GetDrawable(Resource.Drawable.above_shadow);
             layout.AnchorPoint = 0.3f;
             layout.PanelExpanded += (s, e) => Log.Info(Tag, "PanelExpanded");

@@ -811,10 +811,13 @@ namespace Sample
 			public const int above_shadow = 2130837591;
 			
 			// aapt resource value: 0x7f020058
-			public const int graphic = 2130837592;
+			public const int container_dropshadow = 2130837592;
 			
 			// aapt resource value: 0x7f020059
-			public const int Icon = 2130837593;
+			public const int ic_launcher = 2130837593;
+			
+			// aapt resource value: 0x7f02005a
+			public const int my_mug = 2130837594;
 			
 			static Drawable()
 			{
@@ -901,8 +904,8 @@ namespace Sample
 			// aapt resource value: 0x7f05002c
 			public const int expanded_menu = 2131034156;
 			
-			// aapt resource value: 0x7f05003f
-			public const int follow = 2131034175;
+			// aapt resource value: 0x7f050040
+			public const int follow = 2131034176;
 			
 			// aapt resource value: 0x7f050014
 			public const int home = 2131034132;
@@ -919,6 +922,9 @@ namespace Sample
 			// aapt resource value: 0x7f050027
 			public const int image = 2131034151;
 			
+			// aapt resource value: 0x7f05003d
+			public const int infobox = 2131034173;
+			
 			// aapt resource value: 0x7f050001
 			public const int listMode = 2131034113;
 			
@@ -931,8 +937,11 @@ namespace Sample
 			// aapt resource value: 0x7f050012
 			public const int middle = 2131034130;
 			
-			// aapt resource value: 0x7f05003d
-			public const int name = 2131034173;
+			// aapt resource value: 0x7f050041
+			public const int more_info = 2131034177;
+			
+			// aapt resource value: 0x7f05003f
+			public const int name = 2131034175;
 			
 			// aapt resource value: 0x7f050009
 			public const int never = 2131034121;
@@ -1138,12 +1147,6 @@ namespace Sample
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f0a000e
-			public const int ApplicationName = 2131361806;
-			
-			// aapt resource value: 0x7f0a000d
-			public const int Hello = 2131361805;
-			
 			// aapt resource value: 0x7f0a0001
 			public const int abc_action_bar_home_description = 2131361793;
 			
@@ -1182,6 +1185,15 @@ namespace Sample
 			
 			// aapt resource value: 0x7f0a000b
 			public const int abc_shareactionprovider_share_with_application = 2131361803;
+			
+			// aapt resource value: 0x7f0a000f
+			public const int main = 2131361807;
+			
+			// aapt resource value: 0x7f0a000e
+			public const int more_info = 2131361806;
+			
+			// aapt resource value: 0x7f0a000d
+			public const int name = 2131361805;
 			
 			static String()
 			{

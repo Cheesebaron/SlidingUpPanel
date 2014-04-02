@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="Hello">Hello World, Click Me!</string>
-    <string name="ApplicationName">Sample</string>
+  <string name="name">\@Cheesebaron</string>
+  <string name="more_info">Visit me on <a href="https://github.com/Cheesebaron">GitHub</a> for more cool projects and ports, which can make your app a lot more awesome.</string>
+  <string name="main">Main Content</string>
 </resources>
