@@ -12,7 +12,7 @@ Add an awesome draggable panel that slides up from either the bottom or top of y
 
 ## Requirements
 
-This library uses Android Support v4, so it and it is tested on Android 2.2 and above.
+This library uses Android Support v4, and it is tested on Android 2.2 and above.
 
 ## Usage
 
