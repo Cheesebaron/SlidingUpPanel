@@ -19,6 +19,7 @@ namespace Cheesebaron.SlidingUpPanel
         private const int DefaultPanelHeight = 68;
         private const int DefaultShadowHeight = 4;
         private const int DefaultMinFlingVelocity = 400;
+        private const bool DefaultOverlayFlag = false;
         private static readonly Color DefaultFadeColor = new Color(0, 0, 0, 99);
         private static readonly int[] DefaultAttrs = { Android.Resource.Attribute.Gravity };
 
@@ -104,6 +105,8 @@ namespace Cheesebaron.SlidingUpPanel
 
         public bool SlidingEnabled { get; set; }
 
+        public bool IsPanelOverlay { get; set; }
+
         public bool IsUsingDragViewTouchEvents { get; set; }
 
         private int SlidingTop
@@ -153,7 +156,7 @@ namespace Cheesebaron.SlidingUpPanel
                     var gravity = defAttrs.GetInt(0, (int)GravityFlags.NoGravity);
                     var gravityFlag = (GravityFlags) gravity;
                     if (gravityFlag != GravityFlags.Top && gravityFlag != GravityFlags.Bottom)
-                        throw new ArgumentException("layout_gravity must be set to either top or bottom");
+                        throw new ArgumentException("gravity must be set to either top or bottom");
                     _isSlidingUp = gravityFlag == GravityFlags.Bottom;
                 }
 
@@ -171,6 +174,8 @@ namespace Cheesebaron.SlidingUpPanel
                     _coveredFadeColor = ta.GetColor(Resource.Styleable.SlidingUpPanelLayout_fadeColor, DefaultFadeColor);
 
                     _dragViewResId = ta.GetResourceId(Resource.Styleable.SlidingUpPanelLayout_dragView, -1);
+
+                    IsPanelOverlay = ta.GetBoolean(Resource.Styleable.SlidingUpPanelLayout_overlay, DefaultOverlayFlag);
                 }
 
                 ta.Recycle();
@@ -339,7 +344,8 @@ namespace Cheesebaron.SlidingUpPanel
                 }
                 else
                 {
-                    height -= panelHeight;
+                    if (!IsPanelOverlay)
+                        height -= panelHeight;
                 }
 
                 int childWidthSpec;

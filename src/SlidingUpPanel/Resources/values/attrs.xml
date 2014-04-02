@@ -6,5 +6,6 @@
     <attr name="fadeColor" format="color" />
     <attr name="flingVelocity" format="integer" />
     <attr name="dragView" format="reference" />
+    <attr name="overlay" format="boolean"/>
   </declare-styleable>
 </resources>

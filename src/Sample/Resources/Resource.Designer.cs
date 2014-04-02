@@ -30,6 +30,7 @@ namespace Sample
 			global::Cheesebaron.SlidingUpPanel.Resource.Attribute.dragView = global::Sample.Resource.Attribute.dragView;
 			global::Cheesebaron.SlidingUpPanel.Resource.Attribute.fadeColor = global::Sample.Resource.Attribute.fadeColor;
 			global::Cheesebaron.SlidingUpPanel.Resource.Attribute.flingVelocity = global::Sample.Resource.Attribute.flingVelocity;
+			global::Cheesebaron.SlidingUpPanel.Resource.Attribute.overlay = global::Sample.Resource.Attribute.overlay;
 			global::Cheesebaron.SlidingUpPanel.Resource.Attribute.shadowHeight = global::Sample.Resource.Attribute.shadowHeight;
 			global::Cheesebaron.SlidingUpPanel.Resource.Drawable.above_shadow = global::Sample.Resource.Drawable.above_shadow;
 			global::Cheesebaron.SlidingUpPanel.Resource.Styleable.SlidingUpPanelLayout = global::Sample.Resource.Styleable.SlidingUpPanelLayout;
@@ -37,6 +38,7 @@ namespace Sample
 			global::Cheesebaron.SlidingUpPanel.Resource.Styleable.SlidingUpPanelLayout_dragView = global::Sample.Resource.Styleable.SlidingUpPanelLayout_dragView;
 			global::Cheesebaron.SlidingUpPanel.Resource.Styleable.SlidingUpPanelLayout_fadeColor = global::Sample.Resource.Styleable.SlidingUpPanelLayout_fadeColor;
 			global::Cheesebaron.SlidingUpPanel.Resource.Styleable.SlidingUpPanelLayout_flingVelocity = global::Sample.Resource.Styleable.SlidingUpPanelLayout_flingVelocity;
+			global::Cheesebaron.SlidingUpPanel.Resource.Styleable.SlidingUpPanelLayout_overlay = global::Sample.Resource.Styleable.SlidingUpPanelLayout_overlay;
 			global::Cheesebaron.SlidingUpPanel.Resource.Styleable.SlidingUpPanelLayout_shadowHeight = global::Sample.Resource.Styleable.SlidingUpPanelLayout_shadowHeight;
 		}
 		
@@ -277,6 +279,9 @@ namespace Sample
 			
 			// aapt resource value: 0x7f010023
 			public const int navigationMode = 2130772003;
+			
+			// aapt resource value: 0x7f01006f
+			public const int overlay = 2130772079;
 			
 			// aapt resource value: 0x7f010035
 			public const int paddingEnd = 2130772021;
@@ -1935,7 +1940,8 @@ namespace Sample
 					2130772075,
 					2130772076,
 					2130772077,
-					2130772078};
+					2130772078,
+					2130772079};
 			
 			// aapt resource value: 0
 			public const int SlidingUpPanelLayout_collapsedHeight = 0;
@@ -1948,6 +1954,9 @@ namespace Sample
 			
 			// aapt resource value: 3
 			public const int SlidingUpPanelLayout_flingVelocity = 3;
+			
+			// aapt resource value: 5
+			public const int SlidingUpPanelLayout_overlay = 5;
 			
 			// aapt resource value: 1
 			public const int SlidingUpPanelLayout_shadowHeight = 1;

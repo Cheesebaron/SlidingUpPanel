@@ -39,6 +39,9 @@ namespace Cheesebaron.SlidingUpPanel
 			// aapt resource value: 0x7f010003
 			public static int flingVelocity = 2130771971;
 			
+			// aapt resource value: 0x7f010005
+			public static int overlay = 2130771973;
+			
 			// aapt resource value: 0x7f010001
 			public static int shadowHeight = 2130771969;
 			
@@ -76,7 +79,8 @@ namespace Cheesebaron.SlidingUpPanel
 					2130771969,
 					2130771970,
 					2130771971,
-					2130771972};
+					2130771972,
+					2130771973};
 			
 			// aapt resource value: 0
 			public static int SlidingUpPanelLayout_collapsedHeight = 0;
@@ -89,6 +93,9 @@ namespace Cheesebaron.SlidingUpPanel
 			
 			// aapt resource value: 3
 			public static int SlidingUpPanelLayout_flingVelocity = 3;
+			
+			// aapt resource value: 5
+			public static int SlidingUpPanelLayout_overlay = 5;
 			
 			// aapt resource value: 1
 			public static int SlidingUpPanelLayout_shadowHeight = 1;
