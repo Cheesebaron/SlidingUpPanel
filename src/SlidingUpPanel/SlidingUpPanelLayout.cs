@@ -776,7 +776,7 @@ namespace Cheesebaron.SlidingUpPanel
 
                 if (_panelLayout._dragHelper.ViewDragState == ViewDragHelper.StateIdle)
                 {
-                    if (_panelLayout._slideOffset == 0)
+                    if (FloatNearlyEqual(_panelLayout._slideOffset, 0))
                     {
                         if (_panelLayout._slideState != SlideState.Expanded)
                         {
@@ -785,7 +785,7 @@ namespace Cheesebaron.SlidingUpPanel
                             _panelLayout._slideState = SlideState.Expanded;
                         }
                     }
-                    else if (_panelLayout._slideOffset == (float) anchoredTop / _panelLayout._slideRange)
+                    else if (FloatNearlyEqual(_panelLayout._slideOffset, (float)anchoredTop / _panelLayout._slideRange))
                     {
                         if (_panelLayout._slideState != SlideState.Anchored)
                         {
@@ -819,7 +819,7 @@ namespace Cheesebaron.SlidingUpPanel
                     ? _panelLayout.SlidingTop
                     : _panelLayout.SlidingTop - _panelLayout._slideRange;
 
-                if (_panelLayout._anchorPoint != 0)
+                if (!FloatNearlyEqual(_panelLayout._anchorPoint, 0))
                 {
                     int anchoredTop;
                     float anchorOffset;
@@ -836,12 +836,13 @@ namespace Cheesebaron.SlidingUpPanel
                         anchorOffset = (float)(_panelLayout._panelHeight - anchoredTop) / _panelLayout._slideRange;
                     }
 
-                    if (yvel > 0 || (yvel == 0 && _panelLayout._slideOffset >= (1f + anchorOffset) / 2))
+                    if (yvel > 0 || (FloatNearlyEqual(yvel, 0) && _panelLayout._slideOffset >= (1f + anchorOffset) / 2))
                         top += _panelLayout._slideRange;
-                    else if (yvel == 0 && _panelLayout._slideOffset < (1f + anchorOffset) / 2 &&
+                    else if (FloatNearlyEqual(yvel, 0) && _panelLayout._slideOffset < (1f + anchorOffset) / 2 &&
                              _panelLayout._slideOffset >= anchorOffset / 2)
                         top += (int) (_panelLayout._slideRange * _panelLayout._anchorPoint);
-                } else if (yvel > 0 || (yvel == 0 && _panelLayout._slideOffset > 0.5f))
+                }
+                else if (yvel > 0 || (FloatNearlyEqual(yvel, 0) && _panelLayout._slideOffset > 0.5f))
                     top += _panelLayout._slideRange;
 
                 _panelLayout._dragHelper.SettleCapturedViewAt(releasedChild.Left, top);
@@ -943,5 +944,26 @@ namespace Cheesebaron.SlidingUpPanel
             }
         }
 
+        public static bool FloatNearlyEqual(float a, float b, float epsilon) 
+        {
+            var absA = Math.Abs(a);
+            var absB = Math.Abs(b);
+            var diff = Math.Abs(a - b);
+
+            if (a == b) // shortcut, handles infinities
+                return true;
+            if (a == 0 || b == 0 || diff < float.MinValue)
+                // a or b is zero or both are extremely close to it
+                // relative error is less meaningful here
+                return diff < (epsilon * float.MinValue);
+
+            // use relative error
+            return diff / (absA + absB) < epsilon;
+        }
+
+        public static bool FloatNearlyEqual(float a, float b)
+        {
+            return FloatNearlyEqual(a, b, 0.00001f);
+        }
     }
 }
