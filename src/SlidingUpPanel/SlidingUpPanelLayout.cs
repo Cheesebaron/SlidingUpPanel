@@ -105,7 +105,7 @@ namespace Cheesebaron.SlidingUpPanel
 
         public bool SlidingEnabled { get; set; }
 
-        public bool IsPanelOverlay { get; set; }
+        public bool OverlayContent { get; set; }
 
         public bool IsUsingDragViewTouchEvents { get; set; }
 
@@ -175,7 +175,7 @@ namespace Cheesebaron.SlidingUpPanel
 
                     _dragViewResId = ta.GetResourceId(Resource.Styleable.SlidingUpPanelLayout_dragView, -1);
 
-                    IsPanelOverlay = ta.GetBoolean(Resource.Styleable.SlidingUpPanelLayout_overlay, DefaultOverlayFlag);
+                    OverlayContent = ta.GetBoolean(Resource.Styleable.SlidingUpPanelLayout_overlay, DefaultOverlayFlag);
                 }
 
                 ta.Recycle();
@@ -344,7 +344,7 @@ namespace Cheesebaron.SlidingUpPanel
                 }
                 else
                 {
-                    if (!IsPanelOverlay)
+                    if (!OverlayContent)
                         height -= panelHeight;
                 }
 
@@ -593,13 +593,16 @@ namespace Cheesebaron.SlidingUpPanel
 
             if (_canSlide && !lp.Slideable && _slideableView != null)
             {
-                canvas.GetClipBounds(_tmpRect);
-                if (_isSlidingUp)
-                    _tmpRect.Bottom = Math.Min(_tmpRect.Bottom, _slideableView.Top);
-                else
-                    _tmpRect.Top = Math.Max(_tmpRect.Top, _slideableView.Bottom);
+                if (!OverlayContent)
+                {
+                    canvas.GetClipBounds(_tmpRect);
+                    if (_isSlidingUp)
+                        _tmpRect.Bottom = Math.Min(_tmpRect.Bottom, _slideableView.Top);
+                    else
+                        _tmpRect.Top = Math.Max(_tmpRect.Top, _slideableView.Bottom);
 
-                canvas.ClipRect(_tmpRect);
+                    canvas.ClipRect(_tmpRect);
+                }
 
                 if (_slideOffset < 1)
                     drawScrim = true;
