@@ -147,6 +147,10 @@ namespace Cheesebaron.SlidingUpPanel
         public SlidingUpPanelLayout(Context context, IAttributeSet attrs, int defStyle)
             : base(context, attrs, defStyle)
         {
+            // not really relevan in Xamarin.Android but keeping for a possible
+            // future update which will render layouts in the Designer.
+            if (IsInEditMode) return; 
+
             if (attrs != null)
             {
                 var defAttrs = context.ObtainStyledAttributes(attrs, DefaultAttrs);
