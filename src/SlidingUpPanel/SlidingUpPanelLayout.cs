@@ -929,12 +929,12 @@ namespace Cheesebaron.SlidingUpPanel
             }
 
             [ExportField("CREATOR")]
-            static SavedStateCreator InitializeCreator()
+            public static SavedStateCreator InitializeCreator()
             {
                 return new SavedStateCreator();
             }
 
-            class SavedStateCreator : Java.Lang.Object, IParcelableCreator
+            public class SavedStateCreator : Java.Lang.Object, IParcelableCreator
             {
                 public Java.Lang.Object CreateFromParcel(Parcel source)
                 {
