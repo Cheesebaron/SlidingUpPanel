@@ -10,7 +10,7 @@ namespace Sample
 {
     [Activity(Label = "SlidingUpPanel Sample", MainLauncher = true, Icon = "@drawable/ic_launcher",
         Theme = "@style/AppTheme")]
-    public class DemoActivity : ActionBarActivity
+    public class DemoActivity : AppCompatActivity
     {
         private const string Tag = "DemoActivity";
         private const string SavedStateActionBarHidden = "saved_state_action_bar_hidden";
