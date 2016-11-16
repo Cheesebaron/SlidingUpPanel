@@ -1,6 +1,9 @@
 SlidingUpPanel
 ==============
 
+[![Build status](https://ci.appveyor.com/api/projects/status/fn6agb25m7awlqbh?svg=true)](https://ci.appveyor.com/project/Cheesebaron/slidinguppanel)
+[![NuGet](https://img.shields.io/nuget/v/SlidingUpPanel.svg?maxAge=2592000)](https://www.nuget.org/packages/SlidingUpPanel/)
+
 SlidingUpPanel is a port of [AndroidSlidingUpPanel](https://github.com/umano/AndroidSlidingUpPanel) to Xamarin.Android.
 
 Add an awesome draggable panel that slides up from either the bottom or top of your screen. Use it to show more details, reveal music player controls or whatever you want. This type of panel is also used in apps such as Google Music and Rdio.
