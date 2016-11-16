@@ -1,0 +1,29 @@
+version: <%VERSION%>
+name: SlidingUpPanel
+id: SlidingUpPanel
+publisher: Tomasz Cielecki
+publisher-url: http://ostebaronen.dk
+src-url: https://github.com/Cheesebaron/SlidingUpPanel
+summary: A panel that slides out from the bottom or top of the screen.
+license: License.md
+details: Details.md
+getting-started: GettingStarted.md
+
+is_shell: true
+skip_docs: true
+no_build: true
+
+icons:
+  - icons/slidinguppanel_128x128.png
+  - icons/slidinguppanel_512x512.png
+
+libraries:
+  android: ../bin/Release/Cheesebaron.SlidingUpPanel.dll
+packages:
+  android: SlidingUpPanel, Version=<%VERSION%>
+
+samples: 
+  - name: Sample
+    path: "../src/SlidingUpPanel.sln"
+    no_build: true
+    skip_docs: true
