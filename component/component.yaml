@@ -1,6 +1,6 @@
 version: <%VERSION%>
 name: SlidingUpPanel
-id: SlidingUpPanel
+id: slidinguppanel
 publisher: Tomasz Cielecki
 publisher-url: http://ostebaronen.dk
 src-url: https://github.com/Cheesebaron/SlidingUpPanel
