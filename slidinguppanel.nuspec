@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>SlidingUpPanel</id>
+    <title>SlidingUpPanel</title>
+    <version>$version$</version>
+    <description>A panel that slides out from the bottom or top of the screen</description>
+    <dependencies>
+      <group targetFramework="MonoAndroid40">
+        <dependency id="Xamarin.Android.Support.v4" version="24.2.1" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>
