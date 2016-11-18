@@ -6,3 +6,7 @@
 ### New in 1.0.3
 
 * Removed permissions hardcoded in AssemblyInfo
+
+### New in 1.0.5
+
+* Fix package dependencies
