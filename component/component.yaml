@@ -19,8 +19,6 @@ icons:
 
 libraries:
   android: ../bin/Release/Cheesebaron.SlidingUpPanel.dll
-packages:
-  android: SlidingUpPanel, Version=<%VERSION%>
 
 samples: 
   - name: Sample
