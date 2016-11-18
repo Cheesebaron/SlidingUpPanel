@@ -17,6 +17,11 @@ icons:
   - icons/slidinguppanel_128x128.png
   - icons/slidinguppanel_512x512.png
 
+packages:
+  android:
+    - Xamarin.Android.Support.v4, Version=24.2.1
+    - Xamarin.Android.Support.Compat, Version=24.2.1
+
 libraries:
   android: ../bin/Release/Cheesebaron.SlidingUpPanel.dll
 
