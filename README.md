@@ -1,6 +1,8 @@
 SlidingUpPanel
 ==============
 
+> Consider using BottomSheetDialogFragment from the Android Design package instead
+
 [![Build status](https://ci.appveyor.com/api/projects/status/fn6agb25m7awlqbh?svg=true)](https://ci.appveyor.com/project/Cheesebaron/slidinguppanel)
 [![NuGet](https://img.shields.io/nuget/v/SlidingUpPanel.svg?maxAge=2592000)](https://www.nuget.org/packages/SlidingUpPanel/)
 
