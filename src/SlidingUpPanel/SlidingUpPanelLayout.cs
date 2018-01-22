@@ -437,13 +437,13 @@ namespace Cheesebaron.SlidingUpPanel
 
             if (!_canSlide || !SlidingEnabled || (_isUnableToDrag && action != (int) MotionEventActions.Down))
             {
-                _dragHelper.Cancel();
+                _dragHelper?.Cancel();
                 return base.OnInterceptTouchEvent(ev);
             }
 
             if (action == (int) MotionEventActions.Cancel || action == (int) MotionEventActions.Up)
             {
-                _dragHelper.Cancel();
+                _dragHelper?.Cancel();
                 return false;
             }
 
@@ -463,7 +463,7 @@ namespace Cheesebaron.SlidingUpPanel
                 case (int)MotionEventActions.Move:
                     var adx = Math.Abs(x - _initialMotionX);
                     var ady = Math.Abs(y - _initialMotionY);
-                    var dragSlop = _dragHelper.TouchSlop;
+                    var dragSlop = _dragHelper?.TouchSlop ?? 0;
 
                     if (IsUsingDragViewTouchEvents)
                     {
@@ -475,7 +475,7 @@ namespace Cheesebaron.SlidingUpPanel
 
                     if ((ady > dragSlop && adx > ady) || !IsDragViewUnder((int) x, (int) y))
                     {
-                        _dragHelper.Cancel();
+                        _dragHelper?.Cancel();
                         _isUnableToDrag = true;
                         return false;
                     }
@@ -492,7 +492,7 @@ namespace Cheesebaron.SlidingUpPanel
             if (!_canSlide || !SlidingEnabled)
                 return base.OnTouchEvent(ev);
 
-            _dragHelper.ProcessTouchEvent(ev);
+            _dragHelper?.ProcessTouchEvent(ev);
             var action = (int)ev.Action;
 
             switch (action & MotionEventCompat.ActionMask)
@@ -511,7 +511,7 @@ namespace Cheesebaron.SlidingUpPanel
                     var y = ev.GetY();
                     var dx = x - _initialMotionX;
                     var dy = y - _initialMotionY;
-                    var slop = _dragHelper.TouchSlop;
+                    var slop = _dragHelper?.TouchSlop ?? 0;
                     var dragView = _dragView ?? _slideableView;
                     if (dx * dx + dy * dy < slop * slop && IsDragViewUnder((int)x, (int)y))
                     {
@@ -591,7 +591,7 @@ namespace Cheesebaron.SlidingUpPanel
         protected override bool DrawChild(Canvas canvas, View child, long drawingTime)
         {
             var lp = (LayoutParams) child.LayoutParameters;
-            var save = canvas.Save(SaveFlags.Clip);
+            var save = canvas.Save();
 
             var drawScrim = false;
 
@@ -635,7 +635,7 @@ namespace Cheesebaron.SlidingUpPanel
                 ? (int) (SlidingTop + slideOffset * _slideRange)
                 : (int) (SlidingTop - slideOffset * _slideRange);
 
-            if (!_dragHelper.SmoothSlideViewTo(_slideableView, _slideableView.Left, y)) return false;
+            if (!(_dragHelper?.SmoothSlideViewTo(_slideableView, _slideableView.Left, y) ?? false)) return false;
 
             SetAllChildrenVisible();
             ViewCompat.PostInvalidateOnAnimation(this);
@@ -644,6 +644,8 @@ namespace Cheesebaron.SlidingUpPanel
 
         public override void ComputeScroll()
         {
+            if (_dragHelper == null) return;
+
             if (!_dragHelper.ContinueSettling(true)) return;
 
             if (!_canSlide)
@@ -778,7 +780,7 @@ namespace Cheesebaron.SlidingUpPanel
             {
                 var anchoredTop = (int) (_panelLayout._anchorPoint * _panelLayout._slideRange);
 
-                if (_panelLayout._dragHelper.ViewDragState == ViewDragHelper.StateIdle)
+                if (_panelLayout._dragHelper != null && _panelLayout._dragHelper.ViewDragState == ViewDragHelper.StateIdle)
                 {
                     if (FloatNearlyEqual(_panelLayout._slideOffset, 0))
                     {
@@ -849,7 +851,7 @@ namespace Cheesebaron.SlidingUpPanel
                 else if (yvel > 0 || (FloatNearlyEqual(yvel, 0) && _panelLayout._slideOffset > 0.5f))
                     top += _panelLayout._slideRange;
 
-                _panelLayout._dragHelper.SettleCapturedViewAt(releasedChild.Left, top);
+                _panelLayout._dragHelper?.SettleCapturedViewAt(releasedChild.Left, top);
                 _panelLayout.Invalidate();
             }
 
