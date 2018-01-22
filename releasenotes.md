@@ -10,3 +10,8 @@
 ### New in 1.0.5
 
 * Fix package dependencies
+
+### New in 1.1.0
+
+* Built against latest Android Support packages
+* Fixes crash in designer due to _dragHelper being null
