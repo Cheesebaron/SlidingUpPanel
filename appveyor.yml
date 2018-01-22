@@ -1,11 +1,10 @@
 version: 1.0.{build}
-pull_requests:
-  do_not_increment_build_number: true
+image: Visual Studio 2017
 build_script:
 - ps: .\build.ps1
 deploy:
 - provider: NuGet
   api_key:
-    secure: cjUFAKvz0TqOrRFYhnuiEspsrFKeRr1xdfS2H4YY2THW2JZ+tCwHVQxYqLm+UZ33
+    secure: hukFrKl6aHI/QyMM4I47WR/rpi3n01lfSK66Np5G3EvBl+KYRcjfNREEhBy73r8o
   on:
     appveyor_repo_tag: true
