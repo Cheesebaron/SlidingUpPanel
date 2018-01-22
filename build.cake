@@ -1,6 +1,5 @@
-#tool "nuget:?package=GitVersion.CommandLine"
-#tool "nuget:?package=gitlink"
-#addin "Cake.Xamarin"
+#tool nuget:?package=GitVersion.CommandLine
+#tool nuget:?package=vswhere
 
 var sln = new FilePath("src/SlidingUpPanel.sln");
 var project = new FilePath("src/SlidingUpPanel/SlidingUpPanel.csproj");
@@ -12,6 +11,7 @@ var componentYaml = new FilePath("component/component.yaml");
 var componentTool = new FilePath("component/xamarin-component.exe");
 var outputDir = new DirectoryPath("artifacts");
 var target = Argument("target", "Default");
+var configuration = Argument("configuration", "Release");
 
 var isRunningOnAppVeyor = AppVeyor.IsRunningOnAppVeyor;
 var isPullRequest = AppVeyor.Environment.PullRequest.IsPullRequest;
@@ -34,6 +34,17 @@ Task("Version").Does(() => {
 	Information("VI:\t{0}", versionInfo.FullSemVer);
 });
 
+FilePath msBuildPath;
+Task("ResolveBuildTools")
+    .WithCriteria(() => IsRunningOnWindows())
+    .Does(() => 
+{
+    var vsLatest = VSWhereLatest();
+    msBuildPath = (vsLatest == null)
+        ? null
+        : vsLatest.CombineWithFilePath("./MSBuild/15.0/Bin/MSBuild.exe");
+});
+
 Task("Restore").Does(() => {
 	NuGetRestore(sln);
 });
@@ -42,28 +53,26 @@ Task("Build")
 	.IsDependentOn("Clean")
 	.IsDependentOn("Version")
 	.IsDependentOn("Restore")
-	.Does(() =>  {
-	
-	DotNetBuild(sln, 
-		settings => settings.SetConfiguration("Release")
-							.WithProperty("DebugSymbols", "true")
-            				.WithProperty("DebugType", "Full")
-							.WithTarget("Build")
-	);
-});
+	.IsDependentOn("ResolveBuildTools")
+	.Does(() => 
+{	
+	var settings = new MSBuildSettings 
+	{
+		Configuration = configuration
+	};
 
-Task("GitLink")
-	.IsDependentOn("Build")
-	.WithCriteria(() => IsRunningOnWindows())
-	.Does(() => {
-	//pdbstr.exe and costura are not xplat currently
-	GitLink(nuspec.GetDirectory(), new GitLinkSettings {
-		ArgumentCustomization = args => args.Append("-ignore Sample")
-	});
+	settings = settings.WithTarget("Build")
+		.WithProperty("DebugSymbols", "True")
+		.WithProperty("DebugType", "Full");
+
+	if (msBuildPath != null)
+		settings.ToolPath = msBuildPath;
+
+	MSBuild(sln, settings);
 });
 
 Task("Package")
-	.IsDependentOn("GitLink")
+	.IsDependentOn("Build")
 	.Does(() => {
 
 	EnsureDirectoryExists(outputDir);
@@ -103,38 +112,8 @@ Task("Package")
 	});
 });
 
-Task("DownloadComponentTool")
-	.WithCriteria(() => !FileExists(componentTool))
-	.Does(() => {
-	var tool = DownloadFile("http://components.xamarin.com/submit/xpkg");
-	Unzip(tool, componentDir);
-	DeleteFile(tool);
-});
-
-Task("Component")
-	.IsDependentOn("GitLink")
-	.IsDependentOn("DownloadComponentTool")
-	.Does(() => {
-	
-	EnsureDirectoryExists(outputDir);
-
-	TransformTextFile(componentYaml)
-		.WithToken("VERSION", versionInfo.SemVer)
-		.Save(componentYaml);
-
-	PackageComponent(
-		componentDir,
-		new XamarinComponentSettings() {
-			ToolPath = componentTool
-		}
-	);
-
-	MoveFiles("component/SlidingUpPanel-*.xam", outputDir);
-});
-
 Task("UploadAppVeyorArtifact")
 	.IsDependentOn("Package")
-	.IsDependentOn("Component")
 	.WithCriteria(() => !isPullRequest)
 	.WithCriteria(() => isRunningOnAppVeyor)
 	.Does(() => {
@@ -149,10 +128,9 @@ Task("UploadAppVeyorArtifact")
 
 Task("Default")
 	.IsDependentOn("UploadAppVeyorArtifact")
-	.Does(() => {
-
+	.Does(() => 
+{
 	Information("AppVeyor: {0}", isRunningOnAppVeyor);
-
-	});
+});
 
 RunTarget(target);
